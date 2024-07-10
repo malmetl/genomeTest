@@ -1,8 +1,10 @@
 from genomeTest import GenomeHttpclient
 from datetime import datetime
 import json
+import urllib3
+
 client = GenomeHttpclient("https://genomepre.crie.ru",
-                          token="b8a58b7999ae944f3bd1fd1781442fb14433504ff6fd648493c4d0c780514944")
+                          token="")
 
 
 def test_auth():
@@ -11,6 +13,7 @@ def test_auth():
         'password': "2CZSudsG",
     }
     auth_key = client.get_authorization_request(data=data)
+    print(auth_key.text)
     assert auth_key.status_code == 200
 
 def test_auth_negative():
